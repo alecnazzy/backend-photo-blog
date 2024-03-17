@@ -2,16 +2,17 @@ const fastify = require("fastify")({ logger: true });
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+// cors
 const cors = require("@fastify/cors");
-
 fastify.register(cors, {
-  origin: "http://localhost:3000", // Change this to your React frontend URL
+  origin: "http://localhost:3000",
+  // origin: "https://www.alecnazzy.com/"
 });
 
-// import routes
+// routes
 const contentRoutes = require("./routes/content.routes.js");
 
-// connect to DB
+// database
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -20,8 +21,8 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-// start server
-fastify.register(contentRoutes, { prefix: "/api/" });
+// server
+fastify.register(contentRoutes, { prefix: "/api/v1/" });
 
 const start = async () => {
   try {

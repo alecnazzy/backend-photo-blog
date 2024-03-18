@@ -2,6 +2,13 @@ const fastify = require("fastify")({ logger: true });
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+// cors
+const cors = require("@fastify/cors");
+fastify.register(cors, {
+  origin: false,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+});
+
 // routes
 const contentRoutes = require("./routes/content.routes.js");
 

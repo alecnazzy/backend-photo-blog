@@ -3,7 +3,7 @@ const Content = require("../models/content.model");
 async function get(req, reply) {
   try {
     const content = await Content.find();
-    reply.send(content);
+    reply.code(200).header("Content-Type", "application/json").send(content);
   } catch (error) {
     throw new Error(error);
   }

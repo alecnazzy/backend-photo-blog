@@ -2,7 +2,7 @@ const fastify = require("fastify")({ logger: true });
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-// cors
+cors;
 const cors = require("@fastify/cors");
 fastify.register(cors, {
   origin: "https://www.alecnazzy.com",

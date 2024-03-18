@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const cors = require("fastify-cors");
 fastify.register(cors, {
-  origin: "https://www.alecnazzy.com",
+  origin: "https://www.alecnazzy.com/",
   methods: ["GET"],
 });
 

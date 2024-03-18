@@ -3,7 +3,7 @@ const Content = require("../models/content.model");
 async function get(req, reply) {
   try {
     const content = await Content.find();
-    return content;
+    reply.send(content); // Return content as JSON response
   } catch (error) {
     throw new Error(error);
   }
@@ -12,7 +12,7 @@ async function get(req, reply) {
 async function getId(req, reply) {
   try {
     const content = await Content.findById(req.params.id);
-    return content;
+    reply.send(content); // Return content as JSON response
   } catch (error) {
     throw new Error(error);
   }
@@ -21,7 +21,8 @@ async function getId(req, reply) {
 async function create(req, reply) {
   try {
     const content = new Content(req.body);
-    return content.save();
+    await content.save();
+    reply.code(201).send(content); // Return created content as JSON response with status code 201
   } catch (error) {
     throw new Error(error);
   }
@@ -32,7 +33,7 @@ async function update(req, reply) {
     const content = await Content.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    return content;
+    reply.send(content); // Return updated content as JSON response
   } catch (error) {
     throw new Error(error);
   }
@@ -41,7 +42,7 @@ async function update(req, reply) {
 async function deleteId(req, reply) {
   try {
     const content = await Content.findByIdAndDelete(req.params.id);
-    return content;
+    reply.send(content); // Return deleted content as JSON response
   } catch (error) {
     throw new Error(error);
   }

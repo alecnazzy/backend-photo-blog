@@ -2,12 +2,6 @@ const fastify = require("fastify")({ logger: true });
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-// cors
-const cors = require("@fastify/cors");
-fastify.register(cors, {
-  origin: "https://www.alecnazzy.com",
-});
-
 // routes
 const contentRoutes = require("./routes/content.routes.js");
 
